@@ -1,5 +1,6 @@
 <?php
-
+require_once './models/UserModel.php';
+require_once 'controllers/UserController.php';
 $request_uri = $_SERVER['REQUEST_URI'];
 $uri_segments = explode('/', trim($request_uri, '/'));
 
@@ -23,8 +24,9 @@ switch ($route) {
 
     case 'register':
         // Register route
-        require_once 'controllers/UserController.php';
-        $controller = new UserController($conn);
+        
+        $UserModel = new UserModel($conn);
+        $controller = new UserController($UserModel);
         $controller->showRegisterForm();
         break;
     
@@ -34,9 +36,10 @@ switch ($route) {
         session_destroy();
         header('Location:/Movies_App/login');
     case 'login':
+
         // Login route
-        require_once 'controllers/UserController.php';
-        $controller = new UserController($conn);
+        $UserModel = new UserModel($conn);
+        $controller = new UserController($UserModel);
         $controller->showLoginForm();
         break;
 

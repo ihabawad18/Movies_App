@@ -10,14 +10,13 @@ class UserModel
 
     public function loginUser($user)
     {
-        print_r($user);
         // Hash the password and compare it with the one in the database
         try {
 
             $password = $user['password'];
             $email = $this->db->quote($user['email']);
 
-            $sql = "SELECT ID, Password FROM users WHERE Email = $email";
+            $sql = "SELECT ID, Password, isAdmin FROM users WHERE Email = $email";
 
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
@@ -61,6 +60,26 @@ class UserModel
         }
 
 
+    }
+
+    public function getIsAdmin($email){
+        // print_r($user);
+        // Hash the password and compare it with the one in the database
+        try {
+
+            $email = $this->db->quote($email);
+
+            $sql = "SELECT isAdmin FROM users WHERE Email = $email";
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $row['isAdmin'];
+        } catch (Exception $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            return null;
+        }
     }
 }
 

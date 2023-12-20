@@ -1,6 +1,4 @@
 <?php
-$db = $conn;
-
 
 class UserController
 {
@@ -14,17 +12,17 @@ class UserController
 
     public $registerDOB;
 
-    public $db;
+    public $UserModel;
     
-    public function __construct($conn){
-        $this->db = $conn;
+    public function __construct($userModel){
+        // $this->db = $conn;
+        $this->UserModel = $userModel;
     }
     public function showLoginForm()
     {
         // echo print_r($_POST);
         session_start();
         if(isset($_SESSION["email"])){
-            echo $_SESSION["email"];
             header('Location:/Movies_App');
             return ;
         }
@@ -51,13 +49,13 @@ class UserController
             $this->loginPassword = $_POST['password'];
             
             $user = array("email"=> $this->loginEmail,"password"=> $this->loginPassword);
-
-            require_once './models/UserModel.php';
-            $userModel = new UserModel($this->db);
             
-            if($userModel->loginUser($user)){
+            if($this->UserModel->loginUser($user)){
                 session_start();
                 $_SESSION["email"] = $this->loginEmail;
+                if($this->UserModel->getIsAdmin($_SESSION["email"])===1){
+                    $_SESSION["role"]="admin";
+                }
                 return true;
             }
             else{
@@ -107,12 +105,12 @@ class UserController
 
             $user = array("email"=> $this->registerEmail,"password"=> $this->registerPassword,"firstName"=>$this->registerFirstName,"lastName"=>$this->registerLastName,"DOB"=>$this->registerDOB);
 
-            require_once './models/UserModel.php';
-            $userModel = new UserModel($this->db);
-
-            if($userModel->registerUser($user)){
+            if($this->UserModel->registerUser($user)){
                 session_start();
                 $_SESSION["email"] = $this->registerEmail;
+                if($this->UserModel->getIsAdmin($_SESSION["email"])===1){
+                    $_SESSION["role"]="admin";
+                }
                 return true;
             }
             else{
