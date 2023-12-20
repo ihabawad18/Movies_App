@@ -1,6 +1,9 @@
 <?php
 require_once './models/UserModel.php';
 require_once 'controllers/UserController.php';
+require_once './models/MovieModel.php';
+require_once 'controllers/MovieController.php';
+
 $request_uri = $_SERVER['REQUEST_URI'];
 $uri_segments = explode('/', trim($request_uri, '/'));
 
@@ -16,15 +19,14 @@ switch ($route) {
         break;
 
     case 'movies':
-    // // Movies route
-    // require_once 'controllers/MovieController.php';
-    // $controller = new MovieController();
-    // $controller->index();
-    // break;
+    // Movies route
+    $MovieModel = new MovieModel($conn);
+    $controller = new MovieController($MovieModel);
+    $controller->showMovies();
+    break;
 
     case 'register':
         // Register route
-
         $UserModel = new UserModel($conn);
         $controller = new UserController($UserModel);
         $controller->showRegisterForm();
@@ -50,10 +52,16 @@ switch ($route) {
         header('Location:/Movies_App/login');
 
     case 'admin':
-
+        switch ($uri_segments[2]) {
+            case 'addMovie':
+                $MovieModel = new MovieModel($conn);
+                $controller = new MovieController($MovieModel);
+                $controller->ShowAddMovie();
+                break;
+        }
 
     default:
-    // // Handle other routes
+        // // Handle other routes
     // require_once 'controllers/ErrorController.php';
     // $controller = new ErrorController();
     // $controller->notFound();

@@ -103,7 +103,7 @@ class UserModel
                 $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
                 $hashedNewPassword = $this->db->quote($hashedNewPassword);
 
-                $sqlUpdate = "UPDATE users SET Password = $hashedNewPassword WHERE Email = $email";
+                $sqlUpdate = "UPDATE users SET Password = $hashedNewPassword , Updated_At = CURRENT_TIME() WHERE Email = $email";
 
                 $stmtUpdate = $this->db->prepare($sqlUpdate);
                 $stmtUpdate->execute();

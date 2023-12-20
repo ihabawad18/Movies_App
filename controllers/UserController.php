@@ -32,14 +32,15 @@ class UserController
         // echo print_r($_POST);
         session_start();
         if (isset($_SESSION["email"])) {
-            header('Location:/Movies_App');
+            header('Location:/Movies_App/movies');
             return;
         }
 
         if (isset($_POST["login-submit"])) {
             if ($this->login() === true) {
-                header('Location:/Movies_App');
-            } else {
+                header('Location:/Movies_App/movies');
+            } 
+            else {
                 $email = isset($this->loginEmail) ? $this->loginEmail : '';
                 $password = isset($this->loginPassword) ? $this->loginPassword : '';
                 include 'views/user/login.php';
@@ -79,13 +80,13 @@ class UserController
         session_start();
         if (isset($_SESSION["email"])) {
             echo $_SESSION["email"];
-            header('Location:/Movies_App');
+            header('Location:/Movies_App/movies');
             return;
         }
 
         if (isset($_POST["register-submit"])) {
             if ($this->register() === true) {
-                header('Location:/Movies_App');
+                header('Location:/Movies_App/movies');
             } else {
                 $email = isset($this->registerEmail) ? $this->registerEmail : '';
                 $password = isset($this->registerPassword) ? $this->registerPassword : '';
@@ -139,7 +140,7 @@ class UserController
 
         if (isset($_POST["change-pass-submit"])) {
             if ($this->changePassword() === true) {
-                header('Location:/Movies_App');
+                header('Location:/Movies_App/movies');
             } else {
                 $oldPassword = isset($this->oldPassword) ? $this->oldPassword : '';
                 $newPassword = isset($this->newPassword) ? $this->newPassword : '';
