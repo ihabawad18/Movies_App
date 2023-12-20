@@ -23,12 +23,41 @@ class MovieController
         session_start();
         if(isset($_SESSION["email"])){
             $movies = $this->movieModel->getAllMovies();
-            include "views/movies/showMovies.php";
+            include "views/admin/showMovies.php";
         }
         else{
             header("Location:/Movies_App/login");
         }
         
+    }
+
+    public function deleteMovie($movieId)
+    {
+        session_start();
+        include_once "models/UserModel.php";
+
+        if (!isset($_SESSION["email"]) || !isset($_SESSION["role"])) {
+ 
+            header('Location:/Movies_App/login');
+            return;
+        }
+
+        if (isset($_POST["deleteMovie-submit"])) {
+            if ($this->deleteMovieById($movieId) === true) {
+                header('Location:/Movies_App/admin');
+            } else {
+                
+                echo "Failed to delete the movie.";
+            }
+        } else {
+            
+            include 'views/admin/showMovies.php';
+        }
+    }
+
+    private function deleteMovieById($movieId)
+    {
+        return $this->movieModel->deleteMovie($movieId);
     }
 
     public function ShowAddMovie()
@@ -42,7 +71,7 @@ class MovieController
 
         if (isset($_POST["addMovie-submit"])) {
             if ($this->addMovie() === true) {
-                header('Location:/Movies_App');
+                header('Location:/Movies_App/admin');
             } else {
                 $name = isset($this->name) ? $this->name : '';
                 $genre = isset($this->genre) ? $this->genre : '';

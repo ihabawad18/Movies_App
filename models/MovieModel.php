@@ -57,6 +57,19 @@ class MovieModel
             return false;
         }
     }
+    public function deleteMovie($movieId)
+    {
+        try {
+
+            $sql = "DELETE FROM movies WHERE Movie_ID = $movieId";
+            echo $sql;
+            $this->db->exec($sql);
+            return true;
+        } catch (Exception $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            return false;
+        }
+    }
 
 }
 
