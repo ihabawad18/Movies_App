@@ -1,7 +1,3 @@
-<?php
-    // echo $email;
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">

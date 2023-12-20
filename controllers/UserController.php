@@ -12,9 +12,18 @@ class UserController
 
     public $registerDOB;
 
+    public $oldPassword;
+
+    public $newPassword;
+
+    public $confirmPassword;
+
     public $UserModel;
-    
-    public function __construct($userModel){
+
+
+
+    public function __construct($userModel)
+    {
         // $this->db = $conn;
         $this->UserModel = $userModel;
     }
@@ -22,12 +31,12 @@ class UserController
     {
         // echo print_r($_POST);
         session_start();
-        if(isset($_SESSION["email"])){
+        if (isset($_SESSION["email"])) {
             header('Location:/Movies_App');
-            return ;
+            return;
         }
 
-        if (isset($_POST["login-submit"])) {            
+        if (isset($_POST["login-submit"])) {
             if ($this->login() === true) {
                 header('Location:/Movies_App');
             } else {
@@ -44,21 +53,20 @@ class UserController
     {
         // Check if the form is submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             $this->loginEmail = $_POST['email'];
             $this->loginPassword = $_POST['password'];
-            
-            $user = array("email"=> $this->loginEmail,"password"=> $this->loginPassword);
-            
-            if($this->UserModel->loginUser($user)){
+
+            $user = array("email" => $this->loginEmail, "password" => $this->loginPassword);
+
+            if ($this->UserModel->loginUser($user)) {
                 session_start();
                 $_SESSION["email"] = $this->loginEmail;
-                if($this->UserModel->getIsAdmin($_SESSION["email"])===1){
-                    $_SESSION["role"]="admin";
+                if ($this->UserModel->getIsAdmin($_SESSION["email"]) === 1) {
+                    $_SESSION["role"] = "admin";
                 }
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
 
@@ -69,13 +77,13 @@ class UserController
     {
 
         session_start();
-        if(isset($_SESSION["email"])){
+        if (isset($_SESSION["email"])) {
             echo $_SESSION["email"];
             header('Location:/Movies_App');
-            return ;
+            return;
         }
-        
-        if (isset($_POST["register-submit"])) {           
+
+        if (isset($_POST["register-submit"])) {
             if ($this->register() === true) {
                 header('Location:/Movies_App');
             } else {
@@ -96,32 +104,77 @@ class UserController
 
         // Check if the form is submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          
+
             $this->registerEmail = $_POST['email-register'];
             $this->registerPassword = $_POST['password-register'];
             $this->registerFirstName = $_POST['firstName-register'];
             $this->registerLastName = $_POST['lastName-register'];
             $this->registerDOB = $_POST['dob-register'];
 
-            $user = array("email"=> $this->registerEmail,"password"=> $this->registerPassword,"firstName"=>$this->registerFirstName,"lastName"=>$this->registerLastName,"DOB"=>$this->registerDOB);
+            $user = array("email" => $this->registerEmail, "password" => $this->registerPassword, "firstName" => $this->registerFirstName, "lastName" => $this->registerLastName, "DOB" => $this->registerDOB);
 
-            if($this->UserModel->registerUser($user)){
+            if ($this->UserModel->registerUser($user)) {
                 session_start();
                 $_SESSION["email"] = $this->registerEmail;
-                if($this->UserModel->getIsAdmin($_SESSION["email"])===1){
-                    $_SESSION["role"]="admin";
+                if ($this->UserModel->getIsAdmin($_SESSION["email"]) === 1) {
+                    $_SESSION["role"] = "admin";
                 }
                 return true;
+            } else {
+                return false;
             }
-            else{
+
+
+        }
+
+    }
+    // lets make it a profile page ? or only change password form
+    public function showProfile()
+    {
+        session_start();
+        if (!isset($_SESSION["email"])) {
+            header('Location:/Movies_App/login');
+            return;
+        }
+
+        if (isset($_POST["change-pass-submit"])) {
+            if ($this->changePassword() === true) {
+                header('Location:/Movies_App');
+            } else {
+                $oldPassword = isset($this->oldPassword) ? $this->oldPassword : '';
+                $newPassword = isset($this->newPassword) ? $this->newPassword : '';
+                $confirmPassword = isset($this->confirmPassword) ? $this->confirmPassword : '';
+                include 'views/user/profile.php';
+            }
+        } else {
+            include 'views/user/profile.php';
+        }
+    }
+
+    public function changePassword()
+    {
+        // Check if the form is submitted
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $this->oldPassword = $_POST['oldPassword'];
+            $this->newPassword = $_POST['newPassword'];
+            $this->confirmPassword = $_POST['confirmPassword'];
+
+            if ($this->newPassword !== $this->confirmPassword) {
+                echo "passwords must match";
+                return false;
+            }
+
+
+            if ($this->UserModel->updatePassword($_SESSION["email"], $this->oldPassword, $this->newPassword)) {
+                return true;
+            } else {
                 return false;
             }
 
 
         }
     }
-
-
 }
 
 ?>

@@ -16,7 +16,7 @@ class UserModel
             $password = $user['password'];
             $email = $this->db->quote($user['email']);
 
-            $sql = "SELECT ID, Password, isAdmin FROM users WHERE Email = $email";
+            $sql = "SELECT ID, Password FROM users WHERE Email = $email";
 
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
@@ -62,7 +62,8 @@ class UserModel
 
     }
 
-    public function getIsAdmin($email){
+    public function getIsAdmin($email)
+    {
         // print_r($user);
         // Hash the password and compare it with the one in the database
         try {
@@ -79,6 +80,41 @@ class UserModel
         } catch (Exception $e) {
             echo $sql . "<br>" . $e->getMessage();
             return null;
+        }
+    }
+
+    public function updatePassword($email, $oldPassword, $newPassword)
+    {
+
+        try {
+
+            $email = $this->db->quote($email);
+
+            $sql = "SELECT ID, Password FROM users WHERE Email = $email";
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            print_r($row);
+
+            if ($row && password_verify($oldPassword, $row['Password'])) {
+                // Old password is correct, proceed to update the password
+                $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                $hashedNewPassword = $this->db->quote($hashedNewPassword);
+
+                $sqlUpdate = "UPDATE users SET Password = $hashedNewPassword WHERE Email = $email";
+
+                $stmtUpdate = $this->db->prepare($sqlUpdate);
+                $stmtUpdate->execute();
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            return false;
         }
     }
 }
