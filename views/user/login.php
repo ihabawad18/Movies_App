@@ -6,62 +6,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'><link rel="stylesheet" href="../css/log.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+<link rel="stylesheet" type="text/css" href="../css/style.css">
 
-        h1 {
-            color: #333;
-        }
-
-        form {
-            max-width: 300px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 
 <body>
+<div class="container">
+	<div class="screen">
+		<div class="screen__content">
+		<form id="login-form" action="/Movies_App/login" method="post">
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+                    <input type="email" id="email" name="email" class="login__input" placeholder="User name / Email"
+            value="<?php if(isset($email)) echo htmlspecialchars($email) ?>" required>
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-lock"></i>
+                    <input type="password" id="password" name="password" class="login__input"  placeholder="Password"
+                    value="<?php if(isset($password)) echo htmlspecialchars($password) ?>" required>
+                    <input type="hidden" name="login-submit" value="1">
+					</div>
+				<button class="button login__submit">
+					
+                    <a class="button__text" href="index.html">Log In Now</a>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>
+                <br>
 
-    <h1>Login</h1>
+                <p style="color: rgb(1, 27, 49);">Don't have an account? </p>	
+                			
+                <button class="button Signin__submit" ><a class="button__text_signin" href="/Movies_App/register">
+					SignUp Here
+                     </a>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>
+           				
+			</form>
+		
+		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>		
+	</div>
+</div>
+
+    <!-- <h1>Login</h1>
     <form id="login-form" action="/Movies_App/login" method="post">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email"
@@ -71,11 +67,12 @@
         <input type="password" id="password" name="password"
             value="<?php if(isset($password)) echo htmlspecialchars($password) ?>" required>
         <input type="hidden" name="login-submit" value="1">
+
         <button name="submit" value="submit" type="submit">Login</button>
         <a href="/Movies_App/register">
             <button type="button">Register</button>
         </a>
-    </form>
+    </form> -->
     
     <!-- jquery  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

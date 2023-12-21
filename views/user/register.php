@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Sign Up Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/styles.css">
     <title>Registration Form</title>
-    <style>
+    <!-- <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -53,11 +59,50 @@
         button:hover {
             background-color: #45a049;
         }
-    </style>
+    </style> -->
 </head>
 <body>
 
-    <h1>Registration Form</h1>
+<div class="signupFrm">
+<form id="register-form" action="/Movies_App/register" method="post">
+          <h1 class="title">Sign up</h1>
+          <div class="inputContainer">
+          <input type="text" id="firstName" name="firstName-register" class="input" placeholder="a" value="<?php if(isset($firstName)) echo htmlspecialchars($firstName) ?>" required>
+            <label for="" class="label">FirstName</label>
+
+          </div>
+          <div class="inputContainer">
+          <input type="text" id="lastName" name="lastName-register"  class="input" placeholder="a" value="<?php if(isset($lastName)) echo htmlspecialchars($lastName) ?>" required>
+            <label for="" class="label">LastName</label>
+
+          </div> 
+          <label for="date">Birthdate</label>
+          <span id="date-format"></span>
+          <input type="date" id="dob" name="dob-register" aria-describedby="date-format"  value="<?php if(isset($dob)) echo htmlspecialchars($dob) ?>" required>
+        <input type="hidden" name="register-submit" value="1">
+                
+         
+        <br><br>
+        <div class="inputContainer">
+        <input type="email" id="email" name="email-register" class="input"  placeholder="a" value="<?php if(isset($email)) echo htmlspecialchars($email) ?>" required>
+          <label for="" class="label">Email</label>
+        </div>
+          <div class="inputContainer">
+          <input type="password" id="password" name="password-register" class="input"  placeholder="a" value="<?php if(isset($password)) echo htmlspecialchars($password) ?>" required>
+            <label for="" class="label"  >Password</label>
+          </div>
+       
+      
+              
+                <br>
+                <br>           
+          <input type="submit"  class ="submitBtn"id="submitBtn" value="Sign up">
+        </form>
+
+      </div>
+
+
+    <!-- <h1>Registration Form</h1>
     
     <form id="register-form" action="/Movies_App/register" method="post">
         <label for="email">Email:</label>
@@ -80,7 +125,7 @@
         <a href="/Movies_App/login">
             <button type="button">Login</button>
         </a>
-    </form>
+    </form> -->
 
 </body>
 </html>
