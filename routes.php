@@ -78,11 +78,12 @@ switch ($route) {
                         header('Location:/Movies_App/admin');
                         break;
                     }
+                    
             }
 
         }
         else{
-            $controller->showMovies();
+            $controller->showMoviesAdmin();
             break;
         }
 

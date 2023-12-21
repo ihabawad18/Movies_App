@@ -22,7 +22,6 @@ class UserModel
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            print_r($row);
 
             if ($row && password_verify($password, $row['Password'])) {
                 return true;
@@ -30,7 +29,7 @@ class UserModel
                 return false;
             }
         } catch (Exception $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            // echo $sql . "<br>" . $e->getMessage();
             return false;
         }
 
@@ -39,7 +38,6 @@ class UserModel
 
     public function registerUser($user)
     {
-        print_r($user);
         // Hash the password before storing it in the database
         try {
 
@@ -55,7 +53,7 @@ class UserModel
             $this->db->exec($sql);
             return true;
         } catch (Exception $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            //echo $sql . "<br>" . $e->getMessage();
             return false;
         }
 
@@ -78,7 +76,7 @@ class UserModel
 
             return $row['isAdmin'];
         } catch (Exception $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            // echo $sql . "<br>" . $e->getMessage();
             return null;
         }
     }
@@ -96,8 +94,6 @@ class UserModel
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            print_r($row);
-
             if ($row && password_verify($oldPassword, $row['Password'])) {
                 // Old password is correct, proceed to update the password
                 $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -113,7 +109,7 @@ class UserModel
             }
 
         } catch (Exception $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            // echo $sql . "<br>" . $e->getMessage();
             return false;
         }
     }

@@ -34,6 +34,17 @@ class MovieController
         
     }
 
+    public function showMoviesAdmin(){
+        session_start();
+        if(isset($_SESSION["email"]) && isset($_SESSION["role"])){
+            $movies = $this->movieModel->getAllMovies();
+            include "views/admin/showMovies.php";
+        }
+        else{
+            header("Location:/Movies_App/login");
+        }
+    }
+
     public function deleteMovie($movieId)
     {
         session_start();

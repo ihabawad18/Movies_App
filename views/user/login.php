@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/log.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/error.css">
 
 </head>
 
@@ -20,55 +21,60 @@
                 <form id="login-form" action="/Movies_App/login" method="post" style="padding:20px">
                     <div class="login__field">
                         <i class="login__icon fas fa-user"></i>
-                        <input type="email" id="email" name="email" class="login__input" placeholder="Email"
-                            value="<?php if (isset($email))
-                                echo htmlspecialchars($email) ?>" required>
+                        <input type="email" id="email" name="email" class="login__input" placeholder="Email" value="<?php if (isset($email))
+                            echo htmlspecialchars($email) ?>" required>
                         </div>
                         <div class="login__field">
                             <i class="login__icon fas fa-lock"></i>
                             <input type="password" id="password" name="password" class="login__input" placeholder="Password"
                                 value="<?php if (isset($password))
-                                echo htmlspecialchars($password) ?>" required>
+                            echo htmlspecialchars($password) ?>" required>
                             <input type="hidden" name="login-submit" value="1">
                         </div>
-                        <button class="button login__submit">
+                        <?php
 
-                            <a class="button__text" href="index.html">Log In Now</a>
-                            <i class="button__icon fas fa-chevron-right"></i>
-                        </button>
-                        <br>
+                        if (isset($error)) {
+                            echo "<div class='error-container'>$error</div>";
+                        }
+                        ?>
+                    <button class="button login__submit">
 
-                        <p style="color: rgb(1, 27, 49);">Don't have an account? </p>
+                        <a class="button__text" href="index.html">Log In Now</a>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>
+                    <br>
 
-                        <button class="button Signin__submit"><a class="button__text_signin" href="/Movies_App/register">
-                                SignUp Here
-                            </a>
-                            <i class="button__icon fas fa-chevron-right"></i>
-                        </button>
+                    <p style="color: rgb(1, 27, 49);">Don't have an account? </p>
 
-                    </form>
+                    <button class="button Signin__submit"><a class="button__text_signin" href="/Movies_App/register">
+                            SignUp Here
+                        </a>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>
 
-                </div>
-                <div class="screen__background">
-                    <span class="screen__background__shape screen__background__shape4"></span>
-                    <span class="screen__background__shape screen__background__shape3"></span>
-                    <span class="screen__background__shape screen__background__shape2"></span>
-                    <span class="screen__background__shape screen__background__shape1"></span>
-                </div>
+                </form>
+
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
             </div>
         </div>
+    </div>
 
-        <!-- <h1>Login</h1>
+    <!-- <h1>Login</h1>
     <form id="login-form" action="/Movies_App/login" method="post">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email"
             value="<?php if (isset($email))
-                                echo htmlspecialchars($email) ?>" required>
+                echo htmlspecialchars($email) ?>" required>
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password"
             value="<?php if (isset($password))
-                                echo htmlspecialchars($password) ?>" required>
+                echo htmlspecialchars($password) ?>" required>
         <input type="hidden" name="login-submit" value="1">
 
         <button name="submit" value="submit" type="submit">Login</button>

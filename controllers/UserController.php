@@ -43,6 +43,7 @@ class UserController
             else {
                 $email = isset($this->loginEmail) ? $this->loginEmail : '';
                 $password = isset($this->loginPassword) ? $this->loginPassword : '';
+                $error = "Email or Password is wrong";
                 include 'views/user/login.php';
             }
         } else {
@@ -79,7 +80,6 @@ class UserController
 
         session_start();
         if (isset($_SESSION["email"])) {
-            echo $_SESSION["email"];
             header('Location:/Movies_App/movies');
             return;
         }
@@ -93,6 +93,7 @@ class UserController
                 $firstName = isset($this->registerFirstName) ? $this->registerFirstName : '';
                 $lastName = isset($this->registerLastName) ? $this->registerLastName : '';
                 $dob = isset($this->registerDOB) ? $this->registerDOB : '';
+                $error = "Email is already in use";
                 include 'views/user/register.php';
             }
         } else {

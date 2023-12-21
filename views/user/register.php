@@ -10,57 +10,50 @@
 
   <title>Document</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/error.css">
   <title>Registration Form</title>
-  <!-- <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    /* Add this style to your existing CSS or in a separate stylesheet */
+    #dob {
+      width: 100%;
+      height: 40px;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
 
-        h1 {
-            color: #333;
-        }
+    #dob:hover {
+      border-color: #555;
+    }
 
-        form {
-            max-width: 400px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    /* Style the label for better visibility */
+    label[for="dob"] {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
+    /* Hide the default arrow button */
+    #dob::-webkit-calendar-picker-indicator {
+      display: none;
+    }
 
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+    /* Customize the appearance of the date input */
+    #dob {
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+    }
 
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-    </style> -->
+    /* Add a background color when focused */
+    #dob:focus {
+      outline: none;
+      border-color: purple;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 
 <body>
@@ -80,7 +73,8 @@
           <label for="" class="label">LastName</label>
 
         </div>
-        <label for="date">Birthdate</label>
+        <label for="date" style="display:block;margin-bottom:3px">Birthdate</label>
+
         <span id="date-format"></span>
         <input type="date" id="dob" name="dob-register" aria-describedby="date-format" value="<?php if (isset($dob))
           echo htmlspecialchars($dob) ?>" required>
@@ -98,21 +92,25 @@
           echo htmlspecialchars($password) ?>" required>
           <label for="" class="label">Password</label>
         </div>
+      <?php
+      
+        if (isset($error)) {
+          echo "<div class='error-container'>$error</div>";
+        }
+      ?>
+
+      <br>
+      <br>
+      <input type="submit" class="submitBtn" id="submitBtn" value="Sign up">
+      <a href="/login.php" style="text-decoration: none;">
+        <input type="submit" class="submitBtn" id="submitBtn" value="Log in">
+      </a>
+    </form>
+
+  </div>
 
 
-
-        <br>
-        <br>
-        <input type="submit" class="submitBtn" id="submitBtn" value="Sign up">
-        <a href="/login.php" style="text-decoration: none;">
-          <input type="submit" class="submitBtn" id="submitBtn" value="Log in">
-        </a>
-      </form>
-
-    </div>
-
-
-    <!-- <h1>Registration Form</h1>
+  <!-- <h1>Registration Form</h1>
     
     <form id="register-form" action="/Movies_App/register" method="post">
         <label for="email">Email:</label>
