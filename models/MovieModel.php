@@ -62,7 +62,45 @@ class MovieModel
         try {
 
             $sql = "DELETE FROM movies WHERE Movie_ID = $movieId";
-            echo $sql;
+            $this->db->exec($sql);
+            return true;
+        } catch (Exception $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function getMovieByID($movieId)
+    {
+        try {
+            $sql = "SELECT * FROM movies WHERE Movie_ID = :movieId";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':movieId', $movieId, PDO::PARAM_INT);
+            $stmt->execute();
+            $movie = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $movie;
+        } catch (Exception $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            return null;
+        }
+    }
+
+    public function editMovie($movie){
+        try {
+            $movieId = $this->db->quote($movie["Movie_ID"]);
+            $name = $this->db->quote($movie['name']);
+            $genre = $this->db->quote($movie['genre']);
+            $release_date = $this->db->quote($movie['release_date']);
+            $director = $this->db->quote($movie['director']);
+            $cover_photo = $this->db->quote($movie['cover_photo']);
+            $sql = "UPDATE movies SET 
+                    Name = $name, 
+                    Genre = $genre, 
+                    Release_Date = $release_date, 
+                    Director = $director, 
+                    cover_photo = $cover_photo 
+                    WHERE Movie_ID = $movieId";
+
             $this->db->exec($sql);
             return true;
         } catch (Exception $e) {

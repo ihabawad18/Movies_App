@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Sign Up Page</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    
+<head>
+  <title>Sign Up Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
   <title>Document</title>
-  <link rel="stylesheet" href="../css/styles.css">
-    <title>Registration Form</title>
-    <!-- <style>
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Registration Form</title>
+  <!-- <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -61,64 +62,78 @@
         }
     </style> -->
 </head>
+
 <body>
 
-<div class="signupFrm">
-<form id="register-form" action="/Movies_App/register" method="post">
-          <h1 class="title">Sign up</h1>
-          <div class="inputContainer">
-          <input type="text" id="firstName" name="firstName-register" class="input" placeholder="a" value="<?php if(isset($firstName)) echo htmlspecialchars($firstName) ?>" required>
-            <label for="" class="label">FirstName</label>
+  <div class="signupFrm">
+    <form id="register-form" class="form" action="/Movies_App/register" method="post">
+      <h1 class="title">Sign up</h1>
+      <div class="inputContainer">
+        <input type="text" id="firstName" name="firstName-register" class="input" placeholder="a" value="<?php if (isset($firstName))
+          echo htmlspecialchars($firstName) ?>" required>
+          <label for="" class="label">FirstName</label>
 
-          </div>
-          <div class="inputContainer">
-          <input type="text" id="lastName" name="lastName-register"  class="input" placeholder="a" value="<?php if(isset($lastName)) echo htmlspecialchars($lastName) ?>" required>
-            <label for="" class="label">LastName</label>
+        </div>
+        <div class="inputContainer">
+          <input type="text" id="lastName" name="lastName-register" class="input" placeholder="a" value="<?php if (isset($lastName))
+          echo htmlspecialchars($lastName) ?>" required>
+          <label for="" class="label">LastName</label>
 
-          </div> 
-          <label for="date">Birthdate</label>
-          <span id="date-format"></span>
-          <input type="date" id="dob" name="dob-register" aria-describedby="date-format"  value="<?php if(isset($dob)) echo htmlspecialchars($dob) ?>" required>
+        </div>
+        <label for="date">Birthdate</label>
+        <span id="date-format"></span>
+        <input type="date" id="dob" name="dob-register" aria-describedby="date-format" value="<?php if (isset($dob))
+          echo htmlspecialchars($dob) ?>" required>
         <input type="hidden" name="register-submit" value="1">
-                
-         
+
+
         <br><br>
         <div class="inputContainer">
-        <input type="email" id="email" name="email-register" class="input"  placeholder="a" value="<?php if(isset($email)) echo htmlspecialchars($email) ?>" required>
+          <input type="email" id="email" name="email-register" class="input" placeholder="a" value="<?php if (isset($email))
+          echo htmlspecialchars($email) ?>" required>
           <label for="" class="label">Email</label>
         </div>
-          <div class="inputContainer">
-          <input type="password" id="password" name="password-register" class="input"  placeholder="a" value="<?php if(isset($password)) echo htmlspecialchars($password) ?>" required>
-            <label for="" class="label"  >Password</label>
-          </div>
-       
-      
-              
-                <br>
-                <br>           
-          <input type="submit"  class ="submitBtn"id="submitBtn" value="Sign up">
-        </form>
+        <div class="inputContainer">
+          <input type="password" id="password" name="password-register" class="input" placeholder="a" value="<?php if (isset($password))
+          echo htmlspecialchars($password) ?>" required>
+          <label for="" class="label">Password</label>
+        </div>
 
-      </div>
+
+
+        <br>
+        <br>
+        <input type="submit" class="submitBtn" id="submitBtn" value="Sign up">
+        <a href="/login.php" style="text-decoration: none;">
+          <input type="submit" class="submitBtn" id="submitBtn" value="Log in">
+        </a>
+      </form>
+
+    </div>
 
 
     <!-- <h1>Registration Form</h1>
     
     <form id="register-form" action="/Movies_App/register" method="post">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email-register" value="<?php if(isset($email)) echo htmlspecialchars($email) ?>" required>
+        <input type="email" id="email" name="email-register" value="<?php if (isset($email))
+          echo htmlspecialchars($email) ?>" required>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password-register" value="<?php if(isset($password)) echo htmlspecialchars($password) ?>" required>
+        <input type="password" id="password" name="password-register" value="<?php if (isset($password))
+          echo htmlspecialchars($password) ?>" required>
 
         <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName-register" value="<?php if(isset($firstName)) echo htmlspecialchars($firstName) ?>" required>
+        <input type="text" id="firstName" name="firstName-register" value="<?php if (isset($firstName))
+          echo htmlspecialchars($firstName) ?>" required>
 
         <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName-register" value="<?php if(isset($lastName)) echo htmlspecialchars($lastName) ?>" required>
+        <input type="text" id="lastName" name="lastName-register" value="<?php if (isset($lastName))
+          echo htmlspecialchars($lastName) ?>" required>
 
         <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" name="dob-register" value="<?php if(isset($dob)) echo htmlspecialchars($dob) ?>" required>
+        <input type="date" id="dob" name="dob-register" value="<?php if (isset($dob))
+          echo htmlspecialchars($dob) ?>" required>
         <input type="hidden" name="register-submit" value="1">
 
         <button type="submit">Register</button>
@@ -127,5 +142,6 @@
         </a>
     </form> -->
 
-</body>
-</html>
+  </body>
+
+  </html>

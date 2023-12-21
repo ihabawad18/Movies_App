@@ -33,7 +33,6 @@ switch ($route) {
         break;
 
     case 'login':
-
         // Login route
         $UserModel = new UserModel($conn);
         $controller = new UserController($UserModel);
@@ -70,7 +69,15 @@ switch ($route) {
                         header('Location:/Movies_App/admin');
                         break;
                     }
-
+                case 'editMovie':
+                    if(isset($uri_segments[3])){
+                        $controller->showEditMovie($uri_segments[3]);
+                        break;
+                    }
+                    else{
+                        header('Location:/Movies_App/admin');
+                        break;
+                    }
             }
 
         }
