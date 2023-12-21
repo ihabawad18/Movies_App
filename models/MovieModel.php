@@ -109,6 +109,21 @@ class MovieModel
         }
     }
 
+    public function searchMoviesByName($searchTerm) {
+        try {
+            $searchTerm = $this->db->quote("%$searchTerm%");
+    
+            $sql = "SELECT * FROM movies WHERE Name LIKE $searchTerm";
+            $stmt = $this->db->query($sql);
+            $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            return $movies;
+        } catch (Exception $e) {
+            // echo $sql . "<br>" . $e->getMessage();
+            return false;
+        }
+    }
+
 }
 
 ?>

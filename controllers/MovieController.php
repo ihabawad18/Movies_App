@@ -178,6 +178,13 @@ class MovieController
         
         }
     }
+
+    public function searchMovies(){
+        $search = $_POST["searchTerm"];
+        $movies = $this->movieModel->searchMoviesByName($search);
+        print_r($movies);
+        include "views/movies/showMovies.php";
+    }
 }
 
 ?>

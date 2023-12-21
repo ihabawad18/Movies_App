@@ -17,13 +17,17 @@ switch ($route) {
         // $controller = new HomeController();
         // $controller->index();
         break;
-
+    case 'search-movies':
+        $MovieModel = new MovieModel($conn);
+        $controller = new MovieController($MovieModel);
+        $controller->searchMovies();
+        break;
     case 'movies':
-    // Movies route
-    $MovieModel = new MovieModel($conn);
-    $controller = new MovieController($MovieModel);
-    $controller->showMovies();
-    break;
+        // Movies route
+        $MovieModel = new MovieModel($conn);
+        $controller = new MovieController($MovieModel);
+        $controller->showMovies();
+        break;
 
     case 'register':
         // Register route
@@ -54,41 +58,38 @@ switch ($route) {
     case 'admin':
         $MovieModel = new MovieModel($conn);
         $controller = new MovieController($MovieModel);
-        if(isset($uri_segments[2])){
-            
+        if (isset($uri_segments[2])) {
+
             switch ($uri_segments[2]) {
-                case 'addMovie':   
+                case 'addMovie':
                     $controller->ShowAddMovie();
                     break;
                 case 'deleteMovie':
-                    if(isset($uri_segments[3])){
+                    if (isset($uri_segments[3])) {
                         $controller->deleteMovie($uri_segments[3]);
                         break;
-                    }
-                    else{
+                    } else {
                         header('Location:/Movies_App/admin');
                         break;
                     }
                 case 'editMovie':
-                    if(isset($uri_segments[3])){
+                    if (isset($uri_segments[3])) {
                         $controller->showEditMovie($uri_segments[3]);
                         break;
-                    }
-                    else{
+                    } else {
                         header('Location:/Movies_App/admin');
                         break;
                     }
-                    
+
             }
 
-        }
-        else{
+        } else {
             $controller->showMoviesAdmin();
             break;
         }
 
     default:
-        // // Handle other routes
+    // // Handle other routes
     // require_once 'controllers/ErrorController.php';
     // $controller = new ErrorController();
     // $controller->notFound();
