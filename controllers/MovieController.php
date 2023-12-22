@@ -28,7 +28,7 @@ class MovieController
         session_start();
         if (isset($_SESSION["email"])) {
             $movies = $this->movieModel->getAllMovies();
-            include "views/movies/showMovies.php";
+            include "views/movies/moviesList.php";
         } else {
             header("Location:/Movies_App/login");
         }
