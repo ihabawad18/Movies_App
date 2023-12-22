@@ -13,6 +13,8 @@ class MovieController
 
     public $movieId;
 
+    public $length;
+    
     public $movieModel;
 
     public function __construct($movieModel)
@@ -142,6 +144,7 @@ class MovieController
                 $release_date = isset($this->release_date) ? $this->release_date : '';
                 $director = isset($this->director) ? $this->director : '';
                 $cover_photo = isset($this->cover_photo) ? $this->cover_photo : '';
+                $length = isset($this->length) ? $this->length :'';
                 include 'views/admin/editMovie.php';
             }
         } else {
@@ -152,6 +155,7 @@ class MovieController
             $release_date = $this->release_date = $movie['Release_Date'];
             $director = $this->director =$movie['Director'];
             $cover_photo = $this->cover_photo = $movie['cover_photo'];
+            $length = $this->length = $movie['length'];
             // print_r($movie);
             include 'views/admin/editMovie.php';
         }      
@@ -165,6 +169,7 @@ class MovieController
             $this->release_date = $_POST['release_date'];
             $this->director = $_POST['director'];
             $this->cover_photo = $_POST['cover_photo'];
+            $this->length = $_POST['length'];
             $this->movieId = $movieId;
             $movie = array("Movie_ID" => $this->movieId, "name" => $this->name, "genre" => $this->genre, "release_date" => $this->release_date, "director" => $this->director, "cover_photo" => $this->cover_photo
             );

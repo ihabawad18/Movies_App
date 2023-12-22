@@ -17,7 +17,7 @@ class MovieModel
             $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $movies;
         } catch (Exception $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            // echo $sql . "<br>" . $e->getMessage();
             return false;
         }
     }
@@ -30,18 +30,18 @@ class MovieModel
             $genre = $this->db->quote($movie['genre']);
             $release_date = $this->db->quote($movie['release_date']);
             $director = $this->db->quote($movie['director']);
-
+            $length = $this->db->quote($movie['length']);
             // Check if cover_photo is an empty string
             $cover_photo = empty($movie['cover_photo']) ? '' : $this->db->quote($movie['cover_photo']);
 
-            $sql = "INSERT INTO movies (Name, Genre, Release_Date, Director";
+            $sql = "INSERT INTO movies (Name, Genre, Release_Date, Director, Length";
 
             // Only include cover_photo in the column list if it's not empty
             if (!empty($movie['cover_photo'])) {
                 $sql .= ", cover_photo";
             }
 
-            $sql .= ") VALUES ($name, $genre, $release_date, $director";
+            $sql .= ") VALUES ($name, $genre, $release_date, $director, $length";
 
             // Only include cover_photo in the values if it's not empty
             if (!empty($movie['cover_photo'])) {
@@ -53,7 +53,7 @@ class MovieModel
             $this->db->exec($sql);
             return true;
         } catch (Exception $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            // echo $sql . "<br>" . $e->getMessage();
             return false;
         }
     }
@@ -65,7 +65,7 @@ class MovieModel
             $this->db->exec($sql);
             return true;
         } catch (Exception $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            // echo $sql . "<br>" . $e->getMessage();
             return false;
         }
     }
@@ -80,7 +80,7 @@ class MovieModel
             $movie = $stmt->fetch(PDO::FETCH_ASSOC);
             return $movie;
         } catch (Exception $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            // echo $sql . "<br>" . $e->getMessage();
             return null;
         }
     }
@@ -93,18 +93,20 @@ class MovieModel
             $release_date = $this->db->quote($movie['release_date']);
             $director = $this->db->quote($movie['director']);
             $cover_photo = $this->db->quote($movie['cover_photo']);
+            $length = $this->db->quote($movie['length']);
             $sql = "UPDATE movies SET 
                     Name = $name, 
                     Genre = $genre, 
                     Release_Date = $release_date, 
                     Director = $director, 
-                    cover_photo = $cover_photo 
+                    cover_photo = $cover_photo,
+                    length = $length 
                     WHERE Movie_ID = $movieId";
 
             $this->db->exec($sql);
             return true;
         } catch (Exception $e) {
-            echo $sql . "<br>" . $e->getMessage();
+            // echo $sql . "<br>" . $e->getMessage();
             return false;
         }
     }

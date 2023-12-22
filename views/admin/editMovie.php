@@ -79,6 +79,8 @@
 
         <label for="director">Director:</label>
         <input type="text" name="director" value="<?php if(isset($director)) echo htmlspecialchars($director) ?>" required>
+        <label for="length">Length of the movie:</label>
+        <input type="text" name="length" value="<?php if(isset($length)) echo htmlspecialchars($length) ?>" required>
 
         <!-- Use LR File Uploader instead of the previous button -->
         <lr-file-uploader-regular ctx-name="my-uploader" pubkey="b16baaf71489f7828e77" value="<?php if(isset($cover_photo)) echo htmlspecialchars($cover_photo) ?>"></lr-file-uploader-regular>
