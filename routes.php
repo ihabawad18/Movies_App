@@ -18,6 +18,7 @@ switch ($route) {
         // $controller->index();
         break;
     case 'search-movies':
+        //Search movies route
         $MovieModel = new MovieModel($conn);
         $controller = new MovieController($MovieModel);
         $controller->searchMovies();
@@ -26,7 +27,15 @@ switch ($route) {
         // Movies route
         $MovieModel = new MovieModel($conn);
         $controller = new MovieController($MovieModel);
-        $controller->showMovies();
+        if(isset($uri_segments[2])){
+            // exmple /Movies_App/movies/2 
+            // this gets a single movie
+            $controller->showSingleMovie($uri_segments[2]);
+        }
+        else{
+            $controller->showMovies();
+        }
+        
         break;
 
     case 'register':

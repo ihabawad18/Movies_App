@@ -18,7 +18,7 @@ class MovieModel
             return $movies;
         } catch (Exception $e) {
             // echo $sql . "<br>" . $e->getMessage();
-            return false;
+            return [];
         }
     }
 
@@ -81,11 +81,12 @@ class MovieModel
             return $movie;
         } catch (Exception $e) {
             // echo $sql . "<br>" . $e->getMessage();
-            return null;
+            return [];
         }
     }
 
-    public function editMovie($movie){
+    public function editMovie($movie)
+    {
         try {
             $movieId = $this->db->quote($movie["Movie_ID"]);
             $name = $this->db->quote($movie['name']);
@@ -94,15 +95,27 @@ class MovieModel
             $director = $this->db->quote($movie['director']);
             $cover_photo = $this->db->quote($movie['cover_photo']);
             $length = $this->db->quote($movie['length']);
-            $sql = "UPDATE movies SET 
-                    Name = $name, 
-                    Genre = $genre, 
-                    Release_Date = $release_date, 
-                    Director = $director, 
-                    cover_photo = $cover_photo,
-                    length = $length 
-                    WHERE Movie_ID = $movieId";
-
+            // Check if cover_photo has a value
+            if (isset($movie['cover_photo']) && !empty($movie['cover_photo'])) {
+                $cover_photo = $this->db->quote($movie['cover_photo']);
+                $sql = "UPDATE movies SET 
+                Name = $name, 
+                Genre = $genre, 
+                Release_Date = $release_date, 
+                Director = $director, 
+                cover_photo = $cover_photo,
+                Length = $length 
+                WHERE Movie_ID = $movieId";
+            } else {
+                // If cover_photo is empty, exclude it from the update
+                $sql = "UPDATE movies SET 
+                Name = $name, 
+                Genre = $genre, 
+                Release_Date = $release_date, 
+                Director = $director,
+                Length = $length 
+                WHERE Movie_ID = $movieId";
+            }
             $this->db->exec($sql);
             return true;
         } catch (Exception $e) {
@@ -111,18 +124,36 @@ class MovieModel
         }
     }
 
-    public function searchMoviesByName($searchTerm) {
+    public function searchMoviesByName($searchTerm)
+    {
         try {
             $searchTerm = $this->db->quote("%$searchTerm%");
-    
+
             $sql = "SELECT * FROM movies WHERE Name LIKE $searchTerm";
             $stmt = $this->db->query($sql);
             $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
             return $movies;
         } catch (Exception $e) {
             // echo $sql . "<br>" . $e->getMessage();
-            return false;
+            return [];
+        }
+    }
+
+    public function getMovieFavoritesOfUser($userId){
+        try {
+            $sql = "SELECT movies.*
+            FROM user_favorites
+            JOIN movies ON user_favorites.movie_id = movies.id
+            WHERE user_favorites.user_id = $userId";
+            
+            $stmt = $this->db->prepare($sql);
+            $stmt = $this->db->query($sql);
+
+            $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $movies;
+        } catch (Exception $e) {
+            return [];
         }
     }
 

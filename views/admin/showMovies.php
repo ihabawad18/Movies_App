@@ -26,8 +26,8 @@ if ($movies) {
 
         // Actions column with Delete and Edit buttons
         echo '<td>';
-        echo '<a href="edit/' . $movie['Movie_ID'] . '" class="btn btn-sm btn-primary me-1">Edit</a>';
-        echo '<a href="delete/' . $movie['Movie_ID'] . '" class="btn btn-sm btn-danger">Delete</a>';
+        echo '<a href="admin/editMovie/' . $movie['Movie_ID'] . '" class="btn btn-sm btn-primary me-1">Edit</a>';
+        echo '<a href="admin/deleteMovie/' . $movie['Movie_ID'] . '" class="btn btn-sm btn-danger">Delete</a>';
         echo '</td>';
 
         echo '</tr>';
