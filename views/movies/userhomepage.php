@@ -19,7 +19,7 @@
     <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Loading main css file -->
-    <link rel="stylesheet" href="../../css/viewstyles.css" />
+    <link rel="stylesheet" href="css/viewstyles.css" />
 
     <!--[if lt IE 9]>
       <script src="js/ie-support/html5.js"></script>
@@ -31,7 +31,14 @@
     <div id="site-content">
       <header class="site-header">
         <div class="logout-button">
-          <a href="login.html" class="logout-link">Logout</a>
+          <?php 
+            session_start();
+            if(isset($_SESSION["role"])){
+              echo "<a href='adminview.html' class=''>Admin Portal</a>";
+            }
+          ?>
+         
+          <a href="/Movies_App/logout" class="logout-link">Logout</a>
         </div>
 
         <div class="container">
@@ -50,11 +57,11 @@
             </button>
             <ul class="menu">
               <li class="menu-item current-menu-item">
-                <a href="index.html">Home</a>
+                <a href="home">Home</a>
               </li>
-              <li class="menu-item"><a href="moviesList.html">Movie List</a></li>
-              <li class="menu-item"><a href="about.html">About</a></li>
-              <li class="menu-item"><a href="contact.html">Contact</a></li>
+              <li class="menu-item"><a href="movies">Movie List</a></li>
+              <li class="menu-item"><a href="aboutUs">About</a></li>
+              <li class="menu-item"><a href="contactUs">Contact</a></li>
               <li class="menu-item"><a href="userProfile.html">Profile</a></li>
             </ul>
             <!-- .menu -->

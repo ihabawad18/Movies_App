@@ -26,7 +26,7 @@ class MovieController
         session_start();
         if(isset($_SESSION["email"])){
             $movies = $this->movieModel->getAllMovies();
-            include "views/movies/showMovies.php";
+            include "views/movies/moviesList.php";
         }
         else{
             header("Location:/Movies_App/login");
@@ -34,6 +34,16 @@ class MovieController
         
     }
 
+    public function showMoviesAdmin(){
+        session_start();
+        if(isset($_SESSION["email"]) && isset($_SESSION["role"])){
+            $movies = $this->movieModel->getAllMovies();
+            include "views/movies/adminhome.php";
+        }
+        else{
+            header("Location:/Movies_App/login");
+        }
+    }
     public function deleteMovie($movieId)
     {
         session_start();

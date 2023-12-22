@@ -19,7 +19,7 @@
     <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Loading main css file -->
-    <link rel="stylesheet" href="../../css/viewstyles.css" />
+    <link rel="stylesheet" href="css/viewstyles.css" />
 
     <!--[if lt IE 9]>
       <script src="js/ie-support/html5.js"></script>
@@ -45,12 +45,12 @@
               <i class="fa fa-bars"></i>
             </button>
             <ul class="menu">
-              <li class="menu-item current-menu-item">
-                <a href="index.html">Home</a>
+              <li class="menu-item ">
+                <a href="home">Home</a>
               </li>
-              <li class="menu-item"><a href="review.html">Movie reviews</a></li>
-              <li class="menu-item"><a href="about.html">About</a></li>
-              <li class="menu-item"><a href="contact.html">Contact</a></li>
+              <li class="menu-item"><a href="movies">Movie List</a></li>
+              <li class="menu-item"><a href="aboutUs">About</a></li>
+              <li class="menu-item current-menu-item"><a href="contactUs">Contact</a></li>
               <li class="menu-item"><a href="userProfile.html">Profile</a></li>
             </ul>
             <!-- .menu -->
@@ -69,7 +69,7 @@
         <div class="container">
           <div class="page">
             <div class="breadcrumbs">
-              <a href="index.html">Home</a>
+              <a href="home">Home</a>
               <span>Contact</span>
             </div>
 

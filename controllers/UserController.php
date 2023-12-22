@@ -32,7 +32,7 @@ class UserController
         // echo print_r($_POST);
         session_start();
         if (isset($_SESSION["email"])) {
-            header('Location:/Movies_App/movies');
+            header('Location:/Movies_App/home');
             return;
         }
 
@@ -80,7 +80,7 @@ class UserController
         session_start();
         if (isset($_SESSION["email"])) {
             echo $_SESSION["email"];
-            header('Location:/Movies_App/movies');
+            header('Location:/Movies_App/home');
             return;
         }
 
@@ -140,7 +140,7 @@ class UserController
 
         if (isset($_POST["change-pass-submit"])) {
             if ($this->changePassword() === true) {
-                header('Location:/Movies_App/movies');
+                header('Location:/Movies_App/home');
             } else {
                 $oldPassword = isset($this->oldPassword) ? $this->oldPassword : '';
                 $newPassword = isset($this->newPassword) ? $this->newPassword : '';
