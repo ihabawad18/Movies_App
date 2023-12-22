@@ -93,6 +93,8 @@ class MovieController
                 $release_date = isset($this->release_date) ? $this->release_date : '';
                 $director = isset($this->director) ? $this->director : '';
                 $cover_photo = isset($this->cover_photo) ? $this->cover_photo : '';
+                $length = isset($this->length) ? $this->length : '';
+                $error = 'Movie Name must be unique';
                 include 'views/admin/addMovie.php';
             }
         } else {
@@ -111,8 +113,8 @@ class MovieController
             $this->release_date = $_POST['release_date'];
             $this->director = $_POST['director'];
             $this->cover_photo = $_POST['cover_photo'];
-
-            $movie = array("name" => $this->name, "name" => $this->name, "genre" => $this->genre, "release_date" => $this->release_date, "director" => $this->director, "cover_photo" => $this->cover_photo
+            $this->length = $_POST['length'];
+            $movie = array("name" => $this->name, "length" => $this->length, "genre" => $this->genre, "release_date" => $this->release_date, "director" => $this->director, "cover_photo" => $this->cover_photo
             );
 
             if ($this->movieModel->createMovie($movie)) {
@@ -144,6 +146,7 @@ class MovieController
                 $director = isset($this->director) ? $this->director : '';
                 $cover_photo = isset($this->cover_photo) ? $this->cover_photo : '';
                 $length = isset($this->length) ? $this->length : '';
+                $error = 'Movie Name must be unique';
                 include 'views/admin/editMovie.php';
             }
         } else {

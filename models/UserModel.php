@@ -38,7 +38,6 @@ class UserModel
 
     public function registerUser($user)
     {
-        // Hash the password before storing it in the database
         try {
 
             $hashedPassword = $this->db->quote(password_hash($user['password'], PASSWORD_DEFAULT));
@@ -62,8 +61,7 @@ class UserModel
 
     public function getIsAdmin($email)
     {
-        // print_r($user);
-        // Hash the password and compare it with the one in the database
+        
         try {
 
             $email = $this->db->quote($email);

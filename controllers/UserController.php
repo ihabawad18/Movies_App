@@ -146,6 +146,7 @@ class UserController
                 $oldPassword = isset($this->oldPassword) ? $this->oldPassword : '';
                 $newPassword = isset($this->newPassword) ? $this->newPassword : '';
                 $confirmPassword = isset($this->confirmPassword) ? $this->confirmPassword : '';
+                $error = 'Old password is Wrong';
                 include 'views/user/profile.php';
             }
         } else {
