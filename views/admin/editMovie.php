@@ -4,13 +4,22 @@
 <head>
     <!-- Include Uploadcare Widget -->
     <script charset="utf-8" src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
-
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		
     <!-- Include the LR File Uploader CSS -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.30.5/web/lr-file-uploader-regular.min.css">
     <script>
         UPLOADCARE_PUBLIC_KEY = 'b16baaf71489f7828e77';
     </script>
+	
+		
+		<title>Movie Review | Single</title>
+
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="../../fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <link rel="stylesheet" href="../../css/viewstyles.css" />
 
