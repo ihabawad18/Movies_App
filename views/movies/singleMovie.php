@@ -53,8 +53,8 @@
                     <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
                     <ul class="menu">
                         <li class="menu-item"><a href="/Movies_App/home">Home</a></li>
-                        <li class="menu-item"><a href="/Movies_App/aboutUs">About</a></li>
                         <li class="menu-item current-menu-item"><a href="movies">Movie List</a></li>
+                        <li class="menu-item"><a href="/Movies_App/aboutUs">About</a></li>
                         <li class="menu-item"><a href="/Movies_App/contactUs">Contact</a></li>
                         <li class="menu-item"><a href="/Movies_App/change-password">Profile</a></li>
                     </ul> <!-- .menu -->

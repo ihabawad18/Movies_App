@@ -118,7 +118,7 @@ switch ($route) {
         }
 
     default:
-    // // Handle other routes
+    // Handle other routes
     // require_once 'controllers/ErrorController.php';
     // $controller = new ErrorController();
     // $controller->notFound();

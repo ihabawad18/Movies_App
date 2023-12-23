@@ -129,7 +129,7 @@
                         echo '<td>' . $movie['Length'] . '</td>';
                         echo '<td>' . $movie['Release_Date'] . '</td>';
                         echo '<td>' . $movie['Director'] . '</td>';
-                        echo '<td><img src="' . $movie['cover_photo'] . '" alt="Movie Cover Photo"></td>';
+                        echo '<td><img style="height:200px;width:200px;" src="' . $movie['cover_photo'] . '" alt="Movie Cover Photo"></td>';
 
                         // Actions column with Delete and Edit buttons
                         echo '<td>';

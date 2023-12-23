@@ -194,6 +194,7 @@ class MovieController
 
     public function searchMovies()
     {
+        session_start();
         $search = $_POST["searchTerm"];
         $movies = $this->movieModel->searchMoviesByName($search);
         // print_r($movies);

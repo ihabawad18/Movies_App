@@ -9,8 +9,21 @@
 
 
   <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/error.css">
+
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'>
+  <link rel="stylesheet" href="css/log.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  
+
+
+
+
+  
   <title>Registration Form</title>
   <style>
     /* Add this style to your existing CSS or in a separate stylesheet */
@@ -58,7 +71,12 @@
 
 <body>
 
-  <div class="signupFrm">
+  
+    <div class="container">
+      <div class="screen">
+          <div class="screen__content">
+
+
     <form id="register-form" class="form" action="/Movies_App/register" method="post">
       <h1 class="title">Sign up</h1>
       <div class="inputContainer">
@@ -102,12 +120,22 @@
       <br>
       <br>
       <input type="submit" class="submitBtn" id="submitBtn" value="Sign up">
-      <a href="/login.php" style="text-decoration: none;">
-        <input type="submit" class="submitBtn" id="submitBtn" value="Log in">
+      <a href="/Movies_App/login" style="text-decoration: none;">
+        <input class="submitBtn" id="submitBtn" value="Log in">
       </a>
     </form>
 
   </div>
+  <div class="screen__background">
+      <span class="screen_backgroundshape screenbackground_shape4"></span>
+      <span class="screen_backgroundshape screenbackground_shape3"></span>
+      <span class="screen_backgroundshape screenbackground_shape2"></span>
+      <span class="screen_backgroundshape screenbackground_shape1"></span>
+  </div>
+</div>
+</div>
+
+  
 
 
   <!-- <h1>Registration Form</h1>
@@ -139,6 +167,7 @@
             <button type="button">Login</button>
         </a>
     </form> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
   </body>
 

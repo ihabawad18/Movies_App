@@ -2231,6 +2231,7 @@ ul.arrow li a:hover {
 }
 .movie-list .movie {
   width: 22.5%;
+  /* height: 500px; */
   padding: 0 0;
   float: left;
   margin-right: 27px;
