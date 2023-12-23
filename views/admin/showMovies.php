@@ -86,7 +86,7 @@
                 <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
                 <ul class="menu">
                     <li class="menu-item"><a href="home">Home</a></li>
-                    <li class="menu-item"><a href="/Movies_App/admin">Admin View</a></li>
+                    <li class="menu-item current-menu-item"><a href="/Movies_App/admin">Admin View</a></li>
                     <li class="menu-item"><a href="/Movies_App/admin/addMovie"> <i class="fas fa-plus"
                                 style="margin-right:3px"></i>Add Movie</a></li>
                 </ul> <!-- .menu -->
