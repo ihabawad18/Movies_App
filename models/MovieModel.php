@@ -60,8 +60,9 @@ class MovieModel
     public function deleteMovie($movieId)
     {
         try {
-
-            $sql = "DELETE FROM movies WHERE Movie_ID = $movieId";
+            $integerNumber = intval($movieId);
+            echo $integerNumber;
+            $sql = "DELETE FROM movies WHERE Movie_ID = $integerNumber";
             $this->db->exec($sql);
             return true;
         } catch (Exception $e) {

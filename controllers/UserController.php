@@ -38,9 +38,8 @@ class UserController
 
         if (isset($_POST["login-submit"])) {
             if ($this->login() === true) {
-                header('Location:/Movies_App/movies');
-            } 
-            else {
+                header('Location:/Movies_App/home');
+            } else {
                 $email = isset($this->loginEmail) ? $this->loginEmail : '';
                 $password = isset($this->loginPassword) ? $this->loginPassword : '';
                 $error = "Email or Password is wrong";
@@ -87,7 +86,7 @@ class UserController
 
         if (isset($_POST["register-submit"])) {
             if ($this->register() === true) {
-                header('Location:/Movies_App/movies');
+                header('Location:/Movies_App/home');
             } else {
                 $email = isset($this->registerEmail) ? $this->registerEmail : '';
                 $password = isset($this->registerPassword) ? $this->registerPassword : '';

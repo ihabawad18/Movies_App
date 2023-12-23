@@ -61,11 +61,11 @@ class MovieController
             if ($this->deleteMovieById($movieId) === true) {
                 header('Location:/Movies_App/admin');
             } else {
-
+                echo $movieId;
                 echo "Failed to delete the movie.";
             }
         } else {
-
+            $movies = $this->movieModel->getAllMovies();
             include 'views/admin/showMovies.php';
         }
     }
@@ -186,7 +186,8 @@ class MovieController
         }
     }
 
-    public function showSingleMovie($movieId){
+    public function showSingleMovie($movieId)
+    {
         $movie = $this->movieModel->getMovieByID($movieId);
         include "views/movies/singleMovie.php";
     }
@@ -195,8 +196,8 @@ class MovieController
     {
         $search = $_POST["searchTerm"];
         $movies = $this->movieModel->searchMoviesByName($search);
-        print_r($movies);
-        include "views/movies/showMovies.php";
+        // print_r($movies);
+        include "views/movies/moviesList.php";
     }
 }
 

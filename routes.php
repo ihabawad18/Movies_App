@@ -10,8 +10,15 @@ $homeController = new HomeController();
 // Define routes
 $route = $uri_segments[1] ?? '';
 
+if (isset($_GET['page'])) {
+    $MovieModel = new MovieModel($conn);
+    $controller = new MovieController($MovieModel);
+    $controller->showMovies();
+    exit();
+}
+
+
 switch ($route) {
-    
     case '':
         // base route
         require_once 'lala.php';
@@ -39,20 +46,16 @@ switch ($route) {
         // Movies route
         $MovieModel = new MovieModel($conn);
         $controller = new MovieController($MovieModel);
-        if(isset($uri_segments[2])){
+        if (isset($_GET['page'])) {
+            $controller->showMovies();
+        } else if (isset($uri_segments[2])) {
             // exmple /Movies_App/movies/2 
             // this gets a single movie
             $controller->showSingleMovie($uri_segments[2]);
-        }
-        else{
+        } else {
             $controller->showMovies();
         }
-        
-        break;
-        // Movies route
-        $MovieModel = new MovieModel($conn);
-        $controller = new MovieController($MovieModel);
-        $controller->showMovies();
+
         break;
 
     case 'register':
@@ -109,8 +112,7 @@ switch ($route) {
 
             }
 
-        }
-        else{
+        } else {
             $controller->showMoviesAdmin();
             break;
         }

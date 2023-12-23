@@ -21,10 +21,39 @@
       <![endif]-->
 </head>
 
+<style>
+  .movie {
+    border: 1px solid #ffaa3c;
+
+    border-radius: 8px;
+
+    margin-right: 10px;
+
+    padding: 10px;
+
+  }
+
+  .movie-title {
+    margin-top: 10px;
+
+  }
+</style>
+
 <body>
   <div id="site-content">
     <header class="site-header">
       <div class="container">
+        <div class="logout-button">
+          <?php
+          // session_start();
+          if (isset($_SESSION["role"])) {
+            echo "<a href='/Movies_App/admin' class=''>Admin Portal<i class='fa-solid fa-user-tie' style='margin-left:5px'></i></a>";
+          }
+          ?>
+
+          <a href="/Movies_App/logout" class="logout-link">Logout<i class="fa-solid fa-right-from-bracket"
+              style="margin-left:5px"></i></a>
+        </div>
         <a href="index.html" id="branding">
           <img src="images/logo.png" alt="" class="logo" />
           <div class="logo-copy">
@@ -45,19 +74,15 @@
             <li class="menu-item current-menu-item"><a href="movies">Movie List</a></li>
             <li class="menu-item"><a href="aboutUs">About</a></li>
             <li class="menu-item"><a href="contactUs">Contact</a></li>
-            <li class="menu-item"><a href="userProfile.html">Profile</a></li>
+            <li class="menu-item"><a href="change-password">Profile</a></li>
           </ul>
           <!-- .menu -->
 
-          <form action="#" class="search-form">
-            <input type="text" placeholder="Search..." />
-            <button><i class="fa fa-search"></i></button>
-          </form>
-        </div>
-        <!-- .main-navigation -->
 
-        <div class="mobile-navigation"></div>
-      </div>
+          <!-- .main-navigation -->
+
+          <div class="mobile-navigation"></div>
+        </div>
     </header>
     <main class="main-content">
       <div class="container">
@@ -67,7 +92,7 @@
             <span>Movie List</span>
           </div>
 
-          <div class="filters">
+          <!-- <div class="filters">
             <select name="#" id="#" placeholder="Choose Category">
               <option value="#">Action</option>
               <option value="#">Drama</option>
@@ -81,14 +106,22 @@
               <option value="#">2014</option>
             </select>
           </div>
+ -->
 
-
+          <h1>Movies Available</h1>
+          <form method="post" action="/Movies_App/search-movies">
+            <label for="searchTerm">Search Movies:</label>
+            <input type="text" name="searchTerm">
+            <input type="hidden" name="page" value=<?php echo isset($_GET['page']) ? intval($_GET['page']) : 1; ?>>
+            <button type="submit">Search</button>
+          </form>
+          <br>
           <!-- .movie-list -->
           <div class="movie-list">
             <?php
             // Example pagination logic, you may need to adjust this based on your actual requirements
             $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 1;
-            $moviesPerPage = 6; // number of movies per page 
+            $moviesPerPage = 4; // number of movies per page 
             
             $totalMovies = count($movies);
             $totalPages = ceil($totalMovies / $moviesPerPage);
@@ -99,12 +132,12 @@
               $movie = $movies[$i];
               ?>
 
-              <div class="movie">
+              <div class="movie" style="text-align:center">
                 <figure class="movie-poster">
                   <img src="<?php echo $movie['cover_photo']; ?>" alt="Movie Image" />
                 </figure>
                 <div class="movie-title">
-                  <a href="single.html">
+                  <a href="<?php echo 'movies/' . $movie['Movie_ID'] ?>">
                     <?php echo $movie['Name']; ?>
                   </a>
                 </div>
@@ -213,6 +246,9 @@
   <script src="js/jquery-1.11.1.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/app.js"></script>
+  <!-- Include Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/6b3534180a.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
