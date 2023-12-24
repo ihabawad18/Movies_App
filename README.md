@@ -33,7 +33,7 @@ ReelScape Hub is a dynamic web application designed to provide users with a capt
 
 ## Setup Instructions
 
-1. Clone the repository: `git clone https://github.com/your-username/ReelScapeHub.git`.
+1. Clone the repository: `git clone https://github.com/ihabawad18/ReelScapeHub.git`.
 2. Set up a local server environment (e.g., XAMPP, WAMP).
 3. Import the provided MySQL database.
 4. Launch the application and explore ReelScape Hub!
