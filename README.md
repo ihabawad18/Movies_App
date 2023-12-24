@@ -29,7 +29,7 @@ ReelScape Hub is a dynamic web application designed to provide users with a capt
   - MySQL database for data storage.
 
 - **Frontend:**
-  - HTML, CSS, and JavaScript for a dynamic and responsive UI.
+  - HTML, CSS, Bootstrap and JavaScript for a dynamic and responsive UI.
 
 ## Setup Instructions
 
